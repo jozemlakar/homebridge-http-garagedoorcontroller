@@ -160,23 +160,23 @@ function HttpGarageDoorControllerAccessory(log, config) {
 				this.oauthTokenSecret = "";
 				this.oauthSignatureMethod = "HMAC-SHA256";
 
-				this.apiConfig.doorSuccessField = "success";
+				this.apiConfig.doorSuccessField = "s";
 				this.apiConfig.doorOpenMethod = "PUT";
 				this.apiConfig.doorOpenUrl = "/controller/door/open";
 				this.apiConfig.doorCloseMethod = "PUT";
 				this.apiConfig.doorCloseUrl = "/controller/door/close";
 				this.apiConfig.doorStateMethod = "GET";
 				this.apiConfig.doorStateUrl = "/controller";
-				this.apiConfig.doorStateField = "door-state";
+				this.apiConfig.doorStateField = "d-s";
 
-				this.apiConfig.lightSuccessField = "success";
+				this.apiConfig.lightSuccessField = "s";
 				this.apiConfig.lightOnMethod = "PUT";
 				this.apiConfig.lightOnUrl = "/controller/light/on";
 				this.apiConfig.lightOffMethod = "PUT";
 				this.apiConfig.lightOffUrl = "/controller/light/off";
 				this.apiConfig.lightStateMethod = "GET";
 				this.apiConfig.lightStateUrl = "/controller";
-				this.apiConfig.lightStateField = "light-state";
+				this.apiConfig.lightStateField = "l-s";
 				break;
 
 			case "Json":
@@ -669,18 +669,18 @@ HttpGarageDoorControllerAccessory.prototype = {
 
 	_doorStateToState: function(doorState) {
 		switch (doorState.toUpperCase()) {
-			case "OPEN":
+			case "O":
 				return DoorState.OPEN;
-			case "CLOSED":
+			case "C":
 				return DoorState.CLOSED;
-			case "OPENING":
+			case "OING":
 				return DoorState.OPENING;
-			case "CLOSING":
+			case "CING":
 				return DoorState.CLOSING;
-			case "UNKNOWN":
-			case "STOPPED":
-			case "STOPPED-OPENING":
-			case "STOPPED-CLOSING":
+			case "U":
+			case "S":
+			case "S-O":
+			case "S-C":
 				return DoorState.STOPPED;
 			default:
 				return null;
